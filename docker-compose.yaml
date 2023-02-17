@@ -1,0 +1,34 @@
+version: '3.4'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    restart: always
+
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ALL_PAIRS_KEY=https://api.binance.com/api/v3/exchangeInfo
+      - CURRENCY_PAIR_KEY=https://api.binance.com/api/v3/ticker/price?symbol=
+    ports:
+      - 8000:8000
+
+    command:
+      [
+        "uvicorn",
+        "app:create_app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000"
+      ]
+
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    environment:
+      - REDIS_HOST=localhost
+      - REDIS_PORT=6379
