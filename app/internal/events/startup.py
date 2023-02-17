@@ -17,14 +17,14 @@ async def on_startup():
             symbols = [pair.symbol for pair in cutted_pairs]
 
             for symbol in symbols:
-                RedisTools.set_pair(symbol, 0)
+                await RedisTools.set_pair(symbol, 0)
 
 
 async def on_loop_startup():
-    for symbol in RedisTools.get_keys():
+    for symbol in await RedisTools.get_keys():
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                f"{os.getenv('CURRENCY_PAIR_KEY')}{symbol.decode('utf-8')}"
+                f"{os.getenv('CURRENCY_PAIR_KEY')}{symbol}"
             ) as response:
                 response_json = await response.json()
-                RedisTools.set_pair(symbol, response_json["price"])
+                await RedisTools.set_pair(symbol, response_json["price"])

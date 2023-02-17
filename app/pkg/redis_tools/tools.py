@@ -1,22 +1,23 @@
 import os
 
-import redis
+import redis.asyncio
 
 
 class RedisTools:
-
-    __redis_connect = redis.Redis(
-        host=os.getenv("REDIS_HOST"), port=os.getenv("REDIS_PORT")
+    __redis_connect = redis.asyncio.Redis(
+        host=os.getenv("REDIS_HOST"),
+        port=os.getenv("REDIS_PORT"),
+        decode_responses=True,
     )
 
     @classmethod
-    def set_pair(cls, pair: str, price: str):
-        cls.__redis_connect.set(pair, price)
+    async def set_pair(cls, pair: str, price: str):
+        await cls.__redis_connect.set(pair, price)
 
     @classmethod
-    def get_pair(cls, pair):
-        return cls.__redis_connect.get(pair)
+    async def get_pair(cls, pair):
+        return await cls.__redis_connect.get(pair)
 
     @classmethod
-    def get_keys(cls):
-        return cls.__redis_connect.keys(pattern="*")
+    async def get_keys(cls):
+        return await cls.__redis_connect.keys(pattern="*")
