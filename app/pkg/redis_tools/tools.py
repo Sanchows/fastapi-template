@@ -1,12 +1,12 @@
-import os
-
 import redis.asyncio
+
+from app.configuration import config
 
 
 class RedisTools:
     __redis_connect = redis.asyncio.Redis(
-        host=os.getenv("REDIS_HOST"),
-        port=os.getenv("REDIS_PORT"),
+        host=config.REDIS_HOST,
+        port=config.REDIS_PORT,
         decode_responses=True,
     )
 
