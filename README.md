@@ -1,4 +1,4 @@
-# Simple FastAPI App as a template.
+# Simple FastAPI App as a template of FastAPI applications.
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11+-green.svg)](https://www.python.org/downloads/release/python-3110/)\
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
