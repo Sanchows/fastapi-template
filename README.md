@@ -18,4 +18,4 @@ A simple application that makes it possible to get the price of pairs on binance
 
 
 
-Based on the https://github.com/geekceo/FastAPI-app-Redis-Docker repository with my changes.
+Based on the https://github.com/geekceo/FastAPI-app-Redis-Docker repository.
