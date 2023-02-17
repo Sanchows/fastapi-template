@@ -7,7 +7,7 @@
 
 ## Description
 A simple application that makes it possible to get the price of pairs on binance.com.
-Once a day it parses all pairs and updates the prices for pairs every 5 seconds.
+- Once a day it parses all pairs and updates the prices for pairs every 5 seconds.
 
 ## Setup
 1. `git clone https://github.com/Sanchows/fastapi-template.git`
